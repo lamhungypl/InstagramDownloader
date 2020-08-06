@@ -1,0 +1,21 @@
+extends layout
+block content
+    div.text-center
+        form(class="form-signIn" method="POST" action="/image")
+            #error
+                if error
+                    p.text-danger Error!!!
+
+            div
+                //-input password
+                label(for="imgUrl" class="sr-only") Url
+                input(type="text" name="url" id="imgUrl" class="form-control" placeholder="Url" required)
+
+         
+            //-signIn button
+            - var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=buttonClass type="submit") Submit
+
+            #result
+                if result
+                    p.text-danger result!!!

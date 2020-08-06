@@ -10,25 +10,30 @@ const puppeteer = require("puppeteer");
 // }
 
 async function getImageUrlsFromPage(url) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(url);
-    console.log({ url });
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto(url);
+        console.log({ url });
 
-    const imageSrcSets = await page.evaluate(() => {
-        //layout may change
-        const imgs = Array.from(document.querySelectorAll("img.a-dynamic-image"));
+        const imageSrcSets = await page.evaluate(() => {
+            //layout may change
+            const imgs = Array.from(document.querySelectorAll("img.a-dynamic-image"));
 
-        //larger image
-        return imgs[0].getAttribute("data-old-hires");
+            //larger image
+            return imgs[0].getAttribute("data-old-hires");
 
-        //small image
-        return imgs[0].getAttribute("src");
-    });
+            //small image
+            return imgs[0].getAttribute("src");
+        });
 
-    await browser.close();
-    // return imgUrls;
-    return imageSrcSets;
+        await browser.close();
+        // return imgUrls;
+        return imageSrcSets;
+    } catch (error) {
+        return error;
+        throw new Error("error when browse url", error);
+    }
 }
 async function getProductImage(productUrl) {
     const images = await getImageUrlsFromPage(productUrl);

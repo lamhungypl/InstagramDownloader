@@ -1,0 +1,17 @@
+extends layout
+block content
+    div.text-center
+        
+            #error
+                if error
+                    p.text-danger Error!!!
+
+
+            p.text-danger=title
+
+            p.text-danger=url
+
+            p.text-danger=result
+            
+            div
+                img(src=result)
