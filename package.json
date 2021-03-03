@@ -10,7 +10,7 @@
         "http-errors": "^1.8.0",
         "image-downloader": "^4.0.1",
         "morgan": "^1.10.0",
-        "pug": "^3.0.0",
+        "pug": "^3.0.1",
         "puppeteer": "^5.2.1"
     },
     "devDependencies": {
